@@ -1,0 +1,31 @@
+.h-300 {
+    max-height: 300px !important;
+}
+
+
+
+ul {
+    list-style: none;
+}
+
+.layout {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+
+.layout .box {
+    /* background-image: url(../imgs/carousel-1.jpg); */
+    background-position: center center;
+    background-size: cover;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 200px;
+}
+
+.fa-x {
+    left: 97%;
+}
+.active{
+    background-color: red !important;
+    border: none;
+}
