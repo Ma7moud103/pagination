@@ -10,30 +10,44 @@ if (localStorage.getItem("api") !== null) {
 }
 
 
+async function getData(catego) {
+  let data = await fetch(
+    `https://forkify-api.herokuapp.com/api/search?q=${catego != null ? catego : "carrot"}`
+  );
 
-async function getData() {
-  let arr = [
-    "carrot",
-    "broccoli",
-    "asparagus",
-    "cauliflower",
-    "corn",
-    "cucumber",
-  ];
-  let btns = document.querySelectorAll(".btn");
+  let result = await data.json();
+  localStorage.setItem("api", JSON.stringify(result))
+  showdata(result);
+}
+getData()
+
+
+function handleClick() {
+  let btns = document.querySelectorAll(".btn")
   btns.forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      let data = await fetch(
-        `https://forkify-api.herokuapp.com/api/search?q=${btn.innerHTML}`
-      );
-
-      let result = await data.json();
-      localStorage.setItem("api", JSON.stringify(result));
-      showdata(result);
+    btn.addEventListener("click", (e) => {
+      e.preventDefault()
+      console.log(btn.innerHTML);
+      showdata(getData(btn.innerHTML));
     });
   });
 }
-getData();
+handleClick()
+
+
+
+// async function getData() {
+//   let arr = [
+//     "carrot",
+//     "broccoli",
+//     "asparagus",
+//     "cauliflower",
+//     "corn",
+//     "cucumber",
+//   ];
+// }
+
+// getData();
 
 
 function showdata(result) {
